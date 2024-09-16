@@ -24,7 +24,22 @@ module SilentDose
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    Rails.configuration.to_prepare do
+      module RansackableAttachment
+        def ransackable_attributes(_auth_object = nil)
+          %w[blob_id created_at id id_value name record_id record_type]
+        end
+      end
+
+      ActiveSupport.on_load(:active_storage_attachment) do
+        ActiveStorage::Attachment.extend RansackableAttachment
+      end
+    end
+
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.generators do |g|
+      g.test_framework nil
+    end
   end
 end
