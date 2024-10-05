@@ -8,6 +8,7 @@
 #  manufacturer :string           not null
 #  meta         :jsonb            not null
 #  name         :string           not null
+#  unit         :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :uuid             not null
@@ -21,12 +22,16 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Medication < ApplicationRecord
+  attr_accessor :remove_photo
+
   belongs_to :user
 
   has_many :daily_reports_medications, dependent: :nullify, class_name: "DailyReports::Medication"
   has_many :daily_reports, through: :daily_reports_medications
 
   has_one_attached :photo
+
+  before_save :purge_photo, if: -> { remove_photo == "1" }
 
   enum form: {
     tablets: 0,
@@ -52,5 +57,9 @@ class Medication < ApplicationRecord
 
   def display_name
     "#{name}"
+  end
+
+  def purge_photo
+    photo.purge
   end
 end

@@ -1,4 +1,3 @@
-# app/admin/daily_reports.rb
 ActiveAdmin.register DailyReport do
   menu parent: "Daily Reports", label: "Reports", priority: 1
 
@@ -52,6 +51,13 @@ ActiveAdmin.register DailyReport do
 
     panel "Medications" do
       table_for daily_report.daily_reports_medications.order(:position) do
+        column :photo do |daily_report_medication|
+          if daily_report_medication&.medication&.photo&.attached?
+            image_tag(url_for(daily_report_medication.medication.photo), style: "max-width: 48px; max-height: 48px;")
+          else
+            image_tag "no-image-placeholder.jpg", size: "48x48"
+          end
+        end
         column "Medication" do |daily_report_medication|
           if daily_report_medication.medication.present?
             link_to daily_report_medication.medication.name, admin_medication_path(daily_report_medication.medication)

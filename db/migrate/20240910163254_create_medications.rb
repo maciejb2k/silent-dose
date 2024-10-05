@@ -5,6 +5,7 @@ class CreateMedications < ActiveRecord::Migration[7.2]
       t.text :description
       t.string :manufacturer, null: false
       t.integer :form, default: 0, null: false
+      t.string :unit
       t.jsonb :meta, default: {}, null: false
       t.references :user, null: false, foreign_key: true, type: :uuid
 

@@ -4,7 +4,7 @@ ActiveAdmin.register DailyReports::Medication do
 
   belongs_to :daily_report
 
-  permit_params :medication_id, :dosage, :user_id, :position, :taken, :daily_report_id
+  permit_params :medication_id, :dosage, :user_id, :position, :taken, :daily_report_id, :intake_time, :unit, :medication_name, :medication_manufacturer, :medication_form
 
   sortable
 
@@ -19,6 +19,7 @@ ActiveAdmin.register DailyReports::Medication do
     end
     column :dosage
     column :intake_time
+    column :position
     toggle_bool_column :taken
     actions
   end

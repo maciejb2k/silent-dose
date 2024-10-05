@@ -79,6 +79,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_01_174450) do
     t.text "description"
     t.string "manufacturer", null: false
     t.integer "form", default: 0, null: false
+    t.string "unit"
     t.jsonb "meta", default: {}, null: false
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
