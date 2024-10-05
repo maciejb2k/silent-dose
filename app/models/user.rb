@@ -21,4 +21,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :medications, dependent: :destroy
+  has_many :daily_reports, dependent: :destroy
+  has_many :daily_reports_medications, dependent: :destroy
+
+  def display_name
+    email
+  end
 end

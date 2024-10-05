@@ -23,6 +23,9 @@
 class Medication < ApplicationRecord
   belongs_to :user
 
+  has_many :daily_reports_medications, dependent: :nullify, class_name: "DailyReports::Medication"
+  has_many :daily_reports, through: :daily_reports_medications
+
   has_one_attached :photo
 
   enum form: {
@@ -46,4 +49,8 @@ class Medication < ApplicationRecord
   }
 
   validates :name, :form, :manufacturer, presence: true
+
+  def display_name
+    "#{name}"
+  end
 end

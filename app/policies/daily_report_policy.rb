@@ -1,0 +1,1 @@
+class DailyReportPolicy < ApplicationPolicy; end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_10_163255) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_01_174450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -43,6 +43,37 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_10_163255) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "daily_reports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "report_date", null: false
+    t.boolean "is_completed", default: false, null: false
+    t.boolean "is_template", default: false, null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_daily_reports_on_user_id"
+  end
+
+  create_table "daily_reports_medications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "dosage", null: false
+    t.boolean "taken", default: false, null: false
+    t.integer "position", null: false
+    t.datetime "intake_time"
+    t.string "medication_name"
+    t.string "medication_manufacturer"
+    t.string "medication_form"
+    t.uuid "medication_id"
+    t.uuid "daily_report_id", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["daily_report_id", "position"], name: "idx_on_daily_report_id_position_dbfe078fa8", unique: true
+    t.index ["daily_report_id"], name: "index_daily_reports_medications_on_daily_report_id"
+    t.index ["medication_id"], name: "index_daily_reports_medications_on_medication_id"
+    t.index ["user_id"], name: "index_daily_reports_medications_on_user_id"
+  end
+
   create_table "medications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -69,5 +100,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_10_163255) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "daily_reports", "users"
+  add_foreign_key "daily_reports_medications", "daily_reports"
+  add_foreign_key "daily_reports_medications", "medications"
+  add_foreign_key "daily_reports_medications", "users"
   add_foreign_key "medications", "users"
 end

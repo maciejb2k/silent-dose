@@ -1,7 +1,13 @@
 ActiveAdmin.register Medication do
-  menu parent: "Storage", priority: 1
-
   permit_params :name, :description, :manufacturer, :form, :meta
+
+  index do
+    selectable_column
+    column :name
+    column :manufacturer
+    column :form
+    actions
+  end
 
   show do
     attributes_table do
