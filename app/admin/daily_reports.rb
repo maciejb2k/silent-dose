@@ -12,7 +12,7 @@ ActiveAdmin.register DailyReport do
   end
 
   action_item :create_from_template, only: %i[show], priority: 2, if: -> { daily_report.is_template } do
-    link_to "Create Report", create_report_from_template_admin_daily_report_path(daily_report), method: :post
+    link_to "Create Report From Template", create_report_from_template_admin_daily_report_path(daily_report), method: :post
   end
 
   member_action :create_report_from_template, method: :post do
@@ -28,8 +28,13 @@ ActiveAdmin.register DailyReport do
   filter :medications
 
   index do
-    id_column
     column :report_date
+    column :title do |daily_report|
+      truncate(daily_report.title, length: 50)
+    end
+    column :description do |daily_report|
+      truncate(daily_report.description, length: 50)
+    end
     actions do |daily_report|
       if daily_report.is_template
         link_to "Create Report", create_report_from_template_admin_daily_report_path(daily_report),
@@ -42,7 +47,7 @@ ActiveAdmin.register DailyReport do
     attributes_table do
       row :report_date
       row :title
-      row :description
+      markdown_row :description
     end
 
     panel "Medications" do
@@ -55,6 +60,7 @@ ActiveAdmin.register DailyReport do
           end
         end
         column :dosage
+        column :intake_time
         toggle_bool_column :taken
       end
     end
@@ -73,14 +79,11 @@ ActiveAdmin.register DailyReport do
 
     f.inputs "Medications" do
       f.has_many :daily_reports_medications, allow_destroy: true, new_record: true do |m|
-        if m.object.medication.present? || m.object.new_record?
-          # For existing medications
+        if m.object.new_record? || m.object.medication.present?
           m.input :medication, collection: Medication.all.map { |med| [ med.name, med.id ] }
         else
-          # For deleted medications, display the stored details (medication_name, etc.) and disable the field
           m.input :medication_name, input_html: { disabled: true, value: m.object.medication_name }, label: "Medication (Deleted)"
           m.input :medication_manufacturer, input_html: { disabled: true, value: m.object.medication_manufacturer }, label: "Manufacturer"
-          m.input :medication_form, input_html: { disabled: true, value: Medication.forms.key(m.object.medication_form) }, label: "Form"
         end
 
         m.input :dosage

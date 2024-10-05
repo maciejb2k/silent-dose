@@ -8,16 +8,21 @@ class CreateDailyReportFromTemplateService
 
     new_daily_report = daily_report.dup
     new_daily_report.report_date = Date.today
-    new_daily_report.title = "Report from template: #{daily_report.title}"
-    new_daily_report.description = nil
+    new_daily_report.title = daily_report.title
+    new_daily_report.description = daily_report.description
     new_daily_report.is_template = false
     new_daily_report.is_completed = false
     new_daily_report.save
 
+    postion = 1
+
     daily_report.daily_reports_medications.each do |daily_reports_medication|
       new_daily_reports_medication = daily_reports_medication.dup
+      new_daily_reports_medication.position = postion
       new_daily_reports_medication.daily_report_id = new_daily_report.id
       new_daily_reports_medication.save
+
+      postion += 1
     end
 
     new_daily_report

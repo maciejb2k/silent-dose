@@ -18,6 +18,7 @@ ActiveAdmin.register DailyReports::Medication do
       end
     end
     column :dosage
+    column :intake_time
     toggle_bool_column :taken
     actions
   end
@@ -29,7 +30,6 @@ ActiveAdmin.register DailyReports::Medication do
       else
         f.input :medication_name, input_html: { disabled: true, value: f.object.medication_name }, label: "Medication (Deleted)"
         f.input :medication_manufacturer, input_html: { disabled: true, value: f.object.medication_manufacturer }, label: "Manufacturer"
-        f.input :medication_form, input_html: { disabled: true, value: Medication.forms.key(f.object.medication_form) }, label: "Form"
       end
       f.input :dosage
       f.input :intake_time, as: :time_picker

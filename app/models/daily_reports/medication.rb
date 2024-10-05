@@ -46,8 +46,8 @@ class DailyReports::Medication < ApplicationRecord
   def store_medication_details
     return unless medication.present?
 
-    self.medication_name = medication.name
-    self.medication_manufacturer = medication.manufacturer
-    self.medication_form = medication.form
+    self.medication_name ||= medication.name
+    self.medication_manufacturer ||= medication.manufacturer
+    self.medication_form ||= medication.form
   end
 end

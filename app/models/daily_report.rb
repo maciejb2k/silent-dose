@@ -35,6 +35,6 @@ class DailyReport < ApplicationRecord
   scope :reports, -> { where(is_template: false) }
 
   def display_name
-    "#{report_date}"
+    title.presence || "#{report_date}" || "Daily Report"
   end
 end
