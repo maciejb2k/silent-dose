@@ -1,0 +1,9 @@
+<%= month_calendar(attribute: :report_date, events: daily_reports) do |date, daily_reports| %>
+  <%= date %>
+
+  <% daily_reports.each do |daily_report| %>
+    <div>
+      <%= link_to daily_report.display_name, admin_daily_report_path(daily_report) %>
+    </div>
+  <% end %>
+<% end %>

@@ -10,7 +10,7 @@ regular_user = User.create!(
   password: "password",
   password_confirmation: "password",
   role: 0
-);
+)
 
 Medication.create!([
   {
@@ -130,5 +130,26 @@ Medication.create!([
     photo: File.open(Rails.root.join('db/seed/attachments/now-glukonian-potasu.jpg')),
     unit: "mg",
     user: admin_user
+  }
+])
+
+Provider.create!([
+  {
+    name: "Discord Bot",
+    description: "Bot do komunikacji z serwerem Discord",
+    provider_type: 0,
+    config: { token: "SECRET_TOKEN" }
+  },
+  {
+    name: "Email API",
+    description: "API do wysyłania emaili",
+    provider_type: 1,
+    config: {}
+  },
+  {
+    name: "SMS API",
+    description: "API do wysyłania SMS",
+    provider_type: 2,
+    config: {}
   }
 ])

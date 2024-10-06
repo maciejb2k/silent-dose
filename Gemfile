@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+# General
 gem "rails", "~> 7.2.1"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
@@ -13,16 +14,23 @@ gem "image_processing", "~> 1.2"
 gem "sassc-rails"
 gem "tailwindcss-rails"
 
+# ActiveAdmin
 gem "activeadmin"
 gem "arctic_admin"
 gem "activeadmin-sortable"
 gem "activeadmin_addons"
-gem "activeadmin-index_as_calendar", github: "bys-control/activeadmin-index_as_calendar"
 gem "activeadmin_json_editor", "~> 0.0.7"
 
+# Authentication and Authorization
 gem "devise"
 gem "pundit"
+
+# Integrations
+gem "discordrb"
+
+# Utilities
 gem "acts_as_list"
+gem "simple_calendar"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

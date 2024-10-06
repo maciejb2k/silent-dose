@@ -2,16 +2,19 @@
 #
 # Table name: medications
 #
-#  id           :uuid             not null, primary key
-#  description  :text
-#  form         :integer          default("tablets"), not null
-#  manufacturer :string           not null
-#  meta         :jsonb            not null
-#  name         :string           not null
-#  unit         :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :uuid             not null
+#  id                  :uuid             not null, primary key
+#  description         :text
+#  form                :integer          default("tablets"), not null
+#  manufacturer        :string           not null
+#  meta                :jsonb            not null
+#  name                :string           not null
+#  silent_manufacturer :string
+#  silent_name         :string
+#  silent_reminder     :text
+#  unit                :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :uuid             not null
 #
 # Indexes
 #
@@ -33,25 +36,7 @@ class Medication < ApplicationRecord
 
   before_save :purge_photo, if: -> { remove_photo == "1" }
 
-  enum form: {
-    tablets: 0,
-    capsules: 1,
-    powders: 2,
-    liquids: 3,
-    syrups: 4,
-    injections: 5,
-    suppositories: 6,
-    creams_and_ointments: 7,
-    patches: 8,
-    aerosols: 9,
-    granules: 10,
-    lozenges: 11,
-    eye_and_ear_drops: 12,
-    skin_solutions: 13,
-    sachets: 14,
-    sprays: 15,
-    other: 16
-  }
+  enum :form, MedicationForm::FORMS
 
   validates :name, :form, :manufacturer, presence: true
 

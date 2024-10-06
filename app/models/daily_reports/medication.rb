@@ -9,6 +9,9 @@
 #  medication_manufacturer :string
 #  medication_name         :string
 #  position                :integer          not null
+#  silent_manufacturer     :string
+#  silent_name             :string
+#  silent_reminder         :text
 #  taken                   :boolean          default(FALSE), not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
@@ -49,5 +52,8 @@ class DailyReports::Medication < ApplicationRecord
     self.medication_name ||= medication.name
     self.medication_manufacturer ||= medication.manufacturer
     self.medication_form ||= medication.form
+    self.silent_name ||= medication.silent_name
+    self.silent_manufacturer ||= medication.silent_manufacturer
+    self.silent_reminder ||= medication.silent_reminder
   end
 end

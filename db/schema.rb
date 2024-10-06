@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_06_060512) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_06_100251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -68,6 +68,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_06_060512) do
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "silent_name"
+    t.string "silent_manufacturer"
+    t.text "silent_reminder"
     t.index ["daily_report_id", "position"], name: "idx_on_daily_report_id_position_dbfe078fa8", unique: true
     t.index ["daily_report_id"], name: "index_daily_reports_medications_on_daily_report_id"
     t.index ["medication_id"], name: "index_daily_reports_medications_on_medication_id"
@@ -84,7 +87,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_06_060512) do
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "silent_name"
+    t.string "silent_manufacturer"
+    t.text "silent_reminder"
     t.index ["user_id"], name: "index_medications_on_user_id"
+  end
+
+  create_table "providers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.integer "provider_type", default: 0, null: false
+    t.jsonb "config", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider_type"], name: "index_providers_on_provider_type", unique: true
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -96,6 +112,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_06_060512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0, null: false
+    t.jsonb "settings", default: {}, null: false
+    t.boolean "enable_previous_day_reports", default: false
+    t.time "previous_day_report_notification_time"
+    t.string "previous_day_report_email"
+    t.boolean "enable_auto_create_report", default: false
+    t.uuid "daily_report_id"
+    t.boolean "enable_provider_notifications", default: false
+    t.boolean "enable_discord_notifications", default: false
+    t.string "discord_notifications_user"
+    t.boolean "enable_email_notifications", default: false
+    t.string "email_notifications_address"
+    t.boolean "enable_sms_notifications", default: false
+    t.string "sms_notifications_phone_number"
+    t.index ["daily_report_id"], name: "index_users_on_daily_report_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -107,4 +137,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_06_060512) do
   add_foreign_key "daily_reports_medications", "medications"
   add_foreign_key "daily_reports_medications", "users"
   add_foreign_key "medications", "users"
+  add_foreign_key "users", "daily_reports"
 end

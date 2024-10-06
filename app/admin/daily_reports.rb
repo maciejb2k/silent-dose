@@ -1,5 +1,5 @@
 ActiveAdmin.register DailyReport do
-  menu parent: "Daily Reports", label: "Reports", priority: 1
+  menu priority: 2
 
   config.sort_order = "report_date_desc"
 
@@ -15,7 +15,7 @@ ActiveAdmin.register DailyReport do
   end
 
   member_action :create_report_from_template, method: :post do
-    new_daily_report = CreateDailyReportFromTemplateService.new(daily_report_id: params[:id]).call
+    new_daily_report = DailyReports::CreateFromTemplateService.call(params[:id])
     redirect_to admin_daily_report_path(new_daily_report)
   end
 

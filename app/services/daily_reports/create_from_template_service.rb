@@ -1,5 +1,5 @@
-class CreateDailyReportFromTemplateService
-  def initialize(daily_report_id:)
+class DailyReports::CreateFromTemplateService < ApplicationService
+  def initialize(daily_report_id)
     @daily_report_id = daily_report_id
   end
 

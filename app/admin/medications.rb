@@ -1,5 +1,5 @@
 ActiveAdmin.register Medication do
-  permit_params :name, :description, :manufacturer, :form, :meta, :remove_photo, :photo
+  permit_params :name, :description, :manufacturer, :form, :meta, :remove_photo, :photo, :unit, :silent_name, :silent_manufacturer, :silent_reminder
 
   index do
     selectable_column
@@ -30,6 +30,9 @@ ActiveAdmin.register Medication do
         end
       end
       markdown_row :description
+      row :silent_name
+      row :silent_manufacturer
+      row :silent_reminder
     end
   end
 
@@ -44,8 +47,15 @@ ActiveAdmin.register Medication do
               image_tag(url_for(object.photo), style: "max-width: 128px; max-height: 128px; margin-top: 20px;") :
               content_tag(:span, "Nie wgrano jeszcze logo.")
       f.input :remove_photo, as: :boolean, label: "Remove photo" if f.object.photo.attached?
-      f.input :description
+      f.input :description, input_html: { rows: 5 }
     end
+
+    f.inputs "Silent" do
+      f.input :silent_name
+      f.input :silent_manufacturer
+      f.input :silent_reminder, input_html: { rows: 5 }
+    end
+
     f.actions
   end
 end

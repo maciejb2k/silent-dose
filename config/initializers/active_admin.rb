@@ -10,6 +10,9 @@ ActiveAdmin.setup do |config|
   config.meta_tags = meta_tags_options
   config.meta_tags_for_logged_out_pages = meta_tags_options
 
+  config.register_stylesheet "active_admin/json_editor.css"
+  config.register_javascript "active_admin/json_editor.js"
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
