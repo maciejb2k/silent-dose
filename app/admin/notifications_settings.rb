@@ -10,16 +10,19 @@ ActiveAdmin.register_page "Notifications Settings" do
 
         tab "Discord" do
           f.input :enable_discord_notifications
+          f.input :enable_discord_silent
           f.input :discord_notifications_user
         end
 
         tab "Email" do
           f.input :enable_email_notifications
+          f.input :enable_email_silent
           f.input :email_notifications_address
         end
 
         tab "SMS" do
           f.input :enable_sms_notifications
+          f.input :enable_sms_silent
           f.input :sms_notifications_phone_number
         end
       end

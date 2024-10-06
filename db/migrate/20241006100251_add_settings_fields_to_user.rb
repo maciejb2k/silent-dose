@@ -17,14 +17,17 @@ class AddSettingsFieldsToUser < ActiveRecord::Migration[7.2]
 
     # Discord
     add_column :users, :enable_discord_notifications, :boolean, default: false
+    add_column :users, :enable_discord_silent, :boolean, default: false
     add_column :users, :discord_notifications_user, :string
 
     # Email
     add_column :users, :enable_email_notifications, :boolean, default: false
+    add_column :users, :enable_email_silent, :boolean, default: false
     add_column :users, :email_notifications_address, :string
 
     # SMS
     add_column :users, :enable_sms_notifications, :boolean, default: false
+    add_column :users, :enable_sms_silent, :boolean, default: false
     add_column :users, :sms_notifications_phone_number, :string
   end
 end

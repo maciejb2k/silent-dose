@@ -8,10 +8,13 @@
 #  email_notifications_address           :string
 #  enable_auto_create_report             :boolean          default(FALSE)
 #  enable_discord_notifications          :boolean          default(FALSE)
+#  enable_discord_silent                 :boolean          default(FALSE)
 #  enable_email_notifications            :boolean          default(FALSE)
+#  enable_email_silent                   :boolean          default(FALSE)
 #  enable_previous_day_reports           :boolean          default(FALSE)
 #  enable_provider_notifications         :boolean          default(FALSE)
 #  enable_sms_notifications              :boolean          default(FALSE)
+#  enable_sms_silent                     :boolean          default(FALSE)
 #  encrypted_password                    :string           default(""), not null
 #  previous_day_report_email             :string
 #  previous_day_report_notification_time :time
@@ -40,11 +43,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :medications, dependent: :destroy
-  has_many :daily_reports, dependent: :destroy
-  has_many :daily_reports_medications, dependent: :destroy
-  has_one :setting, dependent: :destroy
+  has_many :daily_reports, dependent: :destroy, class_name: "DailyReport"
+  has_many :daily_reports_medications, dependent: :destroy, class_name: "DailyReports::Medication"
 
   enum :role, { user: 0, admin: 1 }
+
+  alias_attribute :user_id, :id
 
   def display_name
     email

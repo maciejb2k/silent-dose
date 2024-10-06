@@ -120,10 +120,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_06_100251) do
     t.uuid "daily_report_id"
     t.boolean "enable_provider_notifications", default: false
     t.boolean "enable_discord_notifications", default: false
+    t.boolean "enable_discord_silent", default: false
     t.string "discord_notifications_user"
     t.boolean "enable_email_notifications", default: false
+    t.boolean "enable_email_silent", default: false
     t.string "email_notifications_address"
     t.boolean "enable_sms_notifications", default: false
+    t.boolean "enable_sms_silent", default: false
     t.string "sms_notifications_phone_number"
     t.index ["daily_report_id"], name: "index_users_on_daily_report_id"
     t.index ["email"], name: "index_users_on_email", unique: true

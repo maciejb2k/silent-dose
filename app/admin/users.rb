@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu false
+  actions :index, :show
 
   permit_params(
     :enable_previous_day_reports,
@@ -8,10 +8,13 @@ ActiveAdmin.register User do
     :daily_report_id,
     :enable_provider_notifications,
     :enable_discord_notifications,
+    :enable_discord_silent,
     :discord_notifications_user,
     :enable_email_notifications,
+    :enable_email_silent,
     :email_notifications_address,
     :enable_sms_notifications,
+    :enable_sms_silent,
     :sms_notifications_phone_number
   )
 
@@ -23,6 +26,21 @@ ActiveAdmin.register User do
       else
         render :edit, alert: "There was an error updating your settings."
       end
+    end
+  end
+
+  index do
+    id_column
+    column :email
+    column :role
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :email
+      row :role
     end
   end
 end
