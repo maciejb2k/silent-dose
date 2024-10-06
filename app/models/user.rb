@@ -8,6 +8,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :integer          default("user"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -23,6 +24,8 @@ class User < ApplicationRecord
   has_many :medications, dependent: :destroy
   has_many :daily_reports, dependent: :destroy
   has_many :daily_reports_medications, dependent: :destroy
+
+  enum role: { user: 0, admin: 1 }
 
   def display_name
     email

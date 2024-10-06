@@ -86,7 +86,7 @@ ActiveAdmin.register DailyReport do
     f.inputs "Medications" do
       f.has_many :daily_reports_medications, allow_destroy: true, new_record: true do |m|
         if m.object.new_record? || m.object.medication.present?
-          m.input :medication, collection: Medication.all.map { |med| [ med.name, med.id ] }
+          m.input :medication, collection: policy_scope(Medication).map { |med| [ med.name, med.id ] }
         else
           m.input :medication_name, input_html: { disabled: true, value: m.object.medication_name }, label: "Medication (Deleted)"
           m.input :medication_manufacturer, input_html: { disabled: true, value: m.object.medication_manufacturer }, label: "Manufacturer"

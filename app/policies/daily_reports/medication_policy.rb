@@ -1,5 +1,5 @@
 class DailyReports::MedicationPolicy < ApplicationPolicy
   def sort?
-    owner?
+    owner_or_admin?
   end
 end

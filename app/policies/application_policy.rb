@@ -17,7 +17,7 @@ class ApplicationPolicy
   end
 
   def create?
-    owner?
+    owner_or_admin?
   end
 
   def new?
@@ -25,7 +25,7 @@ class ApplicationPolicy
   end
 
   def update?
-    owner?
+    owner_or_admin?
   end
 
   def edit?
@@ -33,7 +33,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    owner?
+    owner_or_admin?
   end
 
   class Scope
@@ -55,5 +55,13 @@ class ApplicationPolicy
 
   def owner?
     record.user_id == user.id
+  end
+
+  def admin?
+    user.admin?
+  end
+
+  def owner_or_admin?
+    owner? || admin?
   end
 end

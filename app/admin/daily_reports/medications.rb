@@ -27,7 +27,7 @@ ActiveAdmin.register DailyReports::Medication do
   form do |f|
     f.inputs do
       if f.object.medication.present?
-        f.input :medication, collection: Medication.all.map { |med| [ med.name, med.id ] }
+        f.input :medication, collection: policy_scope(Medication).map { |med| [ med.name, med.id ] }
       else
         f.input :medication_name, input_html: { disabled: true, value: f.object.medication_name }, label: "Medication (Deleted)"
         f.input :medication_manufacturer, input_html: { disabled: true, value: f.object.medication_manufacturer }, label: "Manufacturer"

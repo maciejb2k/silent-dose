@@ -10,17 +10,18 @@ gem "stimulus-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
+gem "sassc-rails"
+gem "tailwindcss-rails"
 
-gem "devise"
-gem "pundit"
 gem "activeadmin"
 gem "arctic_admin"
 gem "activeadmin-sortable"
 gem "activeadmin_addons"
 gem "activeadmin-index_as_calendar", github: "bys-control/activeadmin-index_as_calendar"
-gem "sassc-rails"
-gem "tailwindcss-rails"
-gem "positioning", "~> 0.2.6"
+gem "activeadmin_json_editor", "~> 0.0.7"
+
+gem "devise"
+gem "pundit"
 gem "acts_as_list"
 
 group :development, :test do
