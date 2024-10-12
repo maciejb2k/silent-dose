@@ -14,7 +14,8 @@
 #
 # Indexes
 #
-#  index_daily_reports_on_user_id  (user_id)
+#  index_daily_reports_on_user_id                  (user_id)
+#  index_daily_reports_on_user_id_and_report_date  (user_id,report_date) UNIQUE
 #
 # Foreign Keys
 #
@@ -29,6 +30,7 @@ class DailyReport < ApplicationRecord
   accepts_nested_attributes_for :daily_reports_medications, allow_destroy: true
 
   validates :report_date, presence: true
+  validates :report_date, uniqueness: { scope: :user_id }
 
   scope :completed, -> { where(is_completed: true) }
   scope :templates, -> { where(is_template: true) }

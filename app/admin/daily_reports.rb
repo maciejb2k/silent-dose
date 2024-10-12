@@ -4,7 +4,7 @@ ActiveAdmin.register DailyReport do
   config.sort_order = "report_date_desc"
 
   permit_params :report_date, :user_id, :title, :description, :is_completed, :is_template,
-                daily_reports_medications_attributes: [ :id, :medication_id, :dosage, :user_id, :position, :taken, :_destroy ]
+                daily_reports_medications_attributes: [ :id, :medication_id, :dosage, :user_id, :position, :taken, :intake_time, :_destroy ]
 
   action_item :medications, only: %i[show], priority: 1 do
     link_to "Medications", admin_daily_report_daily_reports_medications_path(daily_report)

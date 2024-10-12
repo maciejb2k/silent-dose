@@ -3,7 +3,7 @@
 # Table name: daily_reports_medications
 #
 #  id                      :uuid             not null, primary key
-#  dosage                  :integer          not null
+#  dosage                  :string           default(""), not null
 #  intake_time             :datetime
 #  medication_form         :string
 #  medication_manufacturer :string
@@ -37,7 +37,7 @@ class DailyReports::Medication < ApplicationRecord
   belongs_to :daily_report
   belongs_to :user
 
-  validates :dosage, presence: true, numericality: { greater_than: 0, only_integer: true }
+  validates :dosage, presence: true
   validates :medication, presence: true, unless: -> { medication.nil? && persisted? }
 
   acts_as_list scope: :daily_report

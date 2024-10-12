@@ -278,6 +278,9 @@ ActiveAdmin.setup do |config|
   #
   config.namespace :admin do |admin|
     admin.download_links = false
+    admin.build_menu do |menu|
+      menu.add label: "Home", url: "/daily_reports", priority: 0
+    end
   end
   #
   #     # Only show XML & PDF options

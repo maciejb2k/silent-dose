@@ -5,3 +5,7 @@
 <%= turbo_stream.replace "medication-progress" do %>
   <%= render partial: 'daily_reports/progress_bar', locals: { taken_medications: @taken_medications, total_medications: @total_medications } %>
 <% end %>
+
+<%= turbo_stream.replace "hero" do %>
+  <%= render partial: 'daily_reports/hero', locals: { daily_report: @daily_report } %>
+<% end %>

@@ -1,0 +1,10 @@
+<%= tag.div id: "hero" do %>
+  <div class="pt-5 pb-4 mb-3 text-center border-top border-bottom">
+    <h3 class="fs-2 text-body-emphasis"><%= I18n.l(daily_report.report_date, locale: :pl, format: :long) %></h3>
+    <% if daily_report.is_completed? %>
+      <p>✅ Przyjęto wszystkie suplementy! Tak trzymaj!</p>
+    <% else %>
+      <p>❌ Nie spożyłeś jeszcze wszystkich suplementów!</p>
+    <% end %>
+  </div>
+<% end %>

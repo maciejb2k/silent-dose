@@ -22,6 +22,7 @@
     <thead>
       <tr>
         <th scope="col">Data</th>
+        <th scope="col">Wykonany</th>
         <th scope="col">Akcje</th>
       </tr>
     </thead>
@@ -29,8 +30,9 @@
       <% @records.each do |daily_report| %>
         <tr>
           <td><%= daily_report.report_date.strftime('%d-%m-%Y') %></td>
+          <td><%= daily_report.is_completed ? '✅' : '❌' %></td>
           <td>
-            <%= link_to 'Pokaż', daily_report %>
+            <%= link_to 'Wyświetl', daily_report %>
           </td>
         </tr>
       <% end %>

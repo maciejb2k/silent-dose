@@ -1,0 +1,24 @@
+pl:
+  activerecord:
+    models:
+      medication_form: "Forma leku"
+    attributes:
+      medication_form:
+        form_types:
+          tablets: "Tabletki"
+          capsules: "Kapsułki"
+          powders: "Proszki"
+          liquids: "Płyny"
+          syrups: "Syropy"
+          injections: "Zastrzyki"
+          suppositories: "Czopki"
+          creams_and_ointments: "Kremy i maści"
+          patches: "Plastry"
+          aerosols: "Aerozole"
+          granules: "Granulki"
+          lozenges: "Pastylki"
+          eye_and_ear_drops: "Krople do oczu i uszu"
+          skin_solutions: "Roztwory do skóry"
+          sachets: "Saszetki"
+          sprays: "Spraye"
+          other: "Inne"

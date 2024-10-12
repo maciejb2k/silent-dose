@@ -26,7 +26,7 @@ ActiveAdmin.register DailyReports::Medication do
 
   form do |f|
     f.inputs do
-      if f.object.medication.present?
+      if f.object.medication.present? || f.object.new_record?
         f.input :medication, collection: policy_scope(Medication).map { |med| [ med.name, med.id ] }
       else
         f.input :medication_name, input_html: { disabled: true, value: f.object.medication_name }, label: "Medication (Deleted)"

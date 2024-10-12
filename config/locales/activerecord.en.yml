@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    models:
+      medication_form: "Medication Form"
+    attributes:
+      medication_form:
+        form_types:
+          tablets: "Tablets"
+          capsules: "Capsules"
+          powders: "Powders"
+          liquids: "Liquids"
+          syrups: "Syrups"
+          injections: "Injections"
+          suppositories: "Suppositories"
+          creams_and_ointments: "Creams and Ointments"
+          patches: "Patches"
+          aerosols: "Aerosols"
+          granules: "Granules"
+          lozenges: "Lozenges"
+          eye_and_ear_drops: "Eye and Ear Drops"
+          skin_solutions: "Skin Solutions"
+          sachets: "Sachets"
+          sprays: "Sprays"
+          other: "Other"

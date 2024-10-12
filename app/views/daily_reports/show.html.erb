@@ -5,6 +5,8 @@
   </ol>
 </nav>
 
+<%= render partial: 'hero', locals: { daily_report: @daily_report } %>
+
 <%= render partial: 'progress_bar', locals: { taken_medications: @taken_medications, total_medications: @total_medications } %>
 
 <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">

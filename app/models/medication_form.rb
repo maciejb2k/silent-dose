@@ -17,5 +17,9 @@ class MedicationForm
     sachets: 14,
     sprays: 15,
     other: 16
-}.freeze
+  }.freeze
+
+  def self.form_name(key)
+    I18n.t("activerecord.attributes.medication_form.form_types.#{key}", locale: :pl)
+  end
 end
