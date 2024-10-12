@@ -1,0 +1,12 @@
+<%= tag.div id: "medication-progress", class: "pb-4" do %>
+  <small>Pasek postępu:</small>
+  <div class=" progress" style="height: 20px;">
+    <div class="progress-bar progress-bar-animated bg-success" role="progressbar"
+         style="width: <%= (taken_medications.to_f / total_medications * 100).round %>%;"
+         aria-valuenow="<%= taken_medications %>"
+         aria-valuemin="0"
+         aria-valuemax="<%= total_medications %>">
+      <%= taken_medications %> / <%= total_medications %>
+    </div>
+  </div>
+<% end %>

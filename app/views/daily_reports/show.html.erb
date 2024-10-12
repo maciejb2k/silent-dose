@@ -4,3 +4,11 @@
     <li class="breadcrumb-item active" aria-current="page"><%= @daily_report.report_date %></li>
   </ol>
 </nav>
+
+<%= render partial: 'progress_bar', locals: { taken_medications: @taken_medications, total_medications: @total_medications } %>
+
+<div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+  <div class="list-group w-100">
+    <%= render partial: 'daily_reports/medications/medication', collection: @medications %>
+  </div>
+</div>

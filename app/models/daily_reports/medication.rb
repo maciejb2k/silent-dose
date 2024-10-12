@@ -43,6 +43,7 @@ class DailyReports::Medication < ApplicationRecord
   acts_as_list scope: :daily_report
 
   before_save :store_medication_details
+  after_save :update_daily_report_completion
 
   private
 
@@ -55,5 +56,9 @@ class DailyReports::Medication < ApplicationRecord
     self.silent_name ||= medication.silent_name
     self.silent_manufacturer ||= medication.silent_manufacturer
     self.silent_reminder ||= medication.silent_reminder
+  end
+
+  def update_daily_report_completion
+    daily_report.update_completion_status
   end
 end

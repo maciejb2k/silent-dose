@@ -6,5 +6,11 @@ Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resources :daily_reports
+  root to: "daily_reports#index"
+
+  resources :daily_reports, only: [ :index, :show, :update ]
+
+  namespace :daily_reports do
+    resources :medications, only: [ :update ]
+  end
 end

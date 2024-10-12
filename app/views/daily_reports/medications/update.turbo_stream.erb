@@ -1,0 +1,7 @@
+<%= turbo_stream.replace dom_id(@medication) do %>
+  <%= render partial: 'daily_reports/medications/medication', locals: { medication: @medication } %>
+<% end %>
+
+<%= turbo_stream.replace "medication-progress" do %>
+  <%= render partial: 'daily_reports/progress_bar', locals: { taken_medications: @taken_medications, total_medications: @total_medications } %>
+<% end %>

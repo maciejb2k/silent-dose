@@ -1,6 +1,6 @@
 class DailyReportsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_daily_report, only: [ :show, :update ]
+  before_action :set_daily_report, only: [ :show ]
 
   def index
     @current_daily_report = current_user.daily_reports.where(report_date: Date.current).first
@@ -9,23 +9,14 @@ class DailyReportsController < ApplicationController
   end
 
   def show
-  end
-
-  def update
-    respond_to do |format|
-      if @daily_report.update(daily_report_params)
-        format.html { redirect_to @daily_report, notice: "Daily report was successfully updated." }
-        format.json { render :show, status: :ok, location: @daily_report }
-      else
-        format.html { render :edit }
-        format.json { render json: @daily_report.errors, status: :unprocessable_entity }
-      end
-    end
+    @medications = @daily_report.daily_reports_medications.includes(:medication).order(:position)
+    @total_medications = @medications.count
+    @taken_medications = @medications.where(taken: true).count
   end
 
   private
 
     def set_daily_report
-      @daily_report = current_user.daily_reports.find(params[:id])
+      @daily_report = policy_scope(DailyReport).find(params[:id])
     end
 end

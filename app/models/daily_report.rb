@@ -37,4 +37,8 @@ class DailyReport < ApplicationRecord
   def display_name
     title.presence || "#{report_date}" || "Daily Report"
   end
+
+  def update_completion_status
+    update(is_completed: daily_reports_medications.all?(&:taken?))
+  end
 end

@@ -1,0 +1,27 @@
+<%= tag.div id: dom_id(medication), class: "gap-4 list-group-item d-flex align-items-center #{medication.taken? ? "bg-body-tertiary" : ""}" do %>
+  <% if medication.medication && medication.medication.photo.attached? %>
+    <%= image_tag(medication.medication.photo, style: "width: 50px; height: 80px; object-fit: cover;") %>
+  <% else %>
+    <%= image_tag("https://via.placeholder.com/50", style: "width: 50px; height: 50px; object-fit: cover;") %>
+  <% end %>
+
+  <div class="w-100">
+    <p class="m-0 fw-semibold">
+      <%= medication.medication_name %>
+      <span class="ms-1 badge text-bg-secondary"><%= medication.dosage %></span>
+    </p>
+    <p class="m-0 text-secondary">
+      <small>
+        Producent: <span class="fw-medium"><%= medication.medication_manufacturer %></span>
+      </small>
+    </p>
+    <hr class="my-2">
+    <%= button_to medication.taken? ? 'Przyjęto' : 'Przyjmij',
+                  daily_reports_medication_path(medication),
+                  method: :patch,
+                  params: { daily_reports_medication: { taken: !medication.taken } },
+                  form: { data: { turbo_frame: dom_id(medication) } },
+                  class: "btn btn-primary w-100 #{medication.taken? ? 'btn-success' : 'btn-secondary'}",
+                  style: "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" %>
+  </div>
+<% end %>
