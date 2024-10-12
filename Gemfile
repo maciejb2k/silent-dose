@@ -12,8 +12,12 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 gem "sassc-rails"
-gem "tailwindcss-rails"
-gem "solid_queue"
+
+gem "bootstrap", "~> 5.3.3"
+gem "autoprefixer-rails"
+gem "jquery-rails"
+
+gem "pagy", "~> 9.1"
 
 # ActiveAdmin
 gem "activeadmin"

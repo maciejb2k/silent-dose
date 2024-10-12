@@ -6,8 +6,5 @@ Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resources :daily_reports_medications do
-    post :move_up, on: :member
-    post :move_down, on: :member
-  end
+  resources :daily_reports
 end
