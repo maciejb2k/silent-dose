@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_12_105745) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_13_170617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -46,13 +46,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_12_105745) do
   create_table "daily_reports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.date "report_date", null: false
+    t.date "report_date"
     t.boolean "is_completed", default: false, null: false
     t.boolean "is_template", default: false, null: false
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "report_date"], name: "index_daily_reports_on_user_id_and_report_date", unique: true
+    t.index ["user_id", "report_date"], name: "index_daily_reports_on_user_id_and_report_date", unique: true, where: "(is_template = false)"
     t.index ["user_id"], name: "index_daily_reports_on_user_id"
   end
 

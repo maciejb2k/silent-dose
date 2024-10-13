@@ -3,8 +3,8 @@ class DailyReportsController < ApplicationController
   before_action :set_daily_report, only: [ :show ]
 
   def index
-    @current_daily_report = current_user.daily_reports.where(report_date: Date.current).first
-    @daily_reports = current_user.daily_reports.order(report_date: :desc)
+    @current_daily_report = current_user.daily_reports.where(report_date: Date.current, is_template: false).first
+    @daily_reports = current_user.daily_reports.where(is_template: false).order(report_date: :desc)
     @pagy, @records = pagy(@daily_reports)
   end
 

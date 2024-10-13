@@ -24,7 +24,8 @@ ActiveAdmin.register User do
       if @user.update(permitted_params[:user])
         redirect_to params[:user][:redirect_to].to_s || admin_dashboard_path, notice: "Your settings were successfully updated."
       else
-        render :edit, alert: "There was an error updating your settings."
+        flash[:error] = @user.errors.full_messages.join(", ")
+        redirect_back fallback_location: params[:user][:redirect_to].to_s
       end
     end
   end

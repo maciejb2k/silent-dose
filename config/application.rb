@@ -36,6 +36,9 @@ module SilentDose
       end
     end
 
+    # Setup the Active Job queue adapter to be Sidekiq
+    config.active_job.queue_adapter = :sidekiq
+
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.generators do |g|

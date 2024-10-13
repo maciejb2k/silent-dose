@@ -50,6 +50,8 @@ class User < ApplicationRecord
 
   alias_attribute :user_id, :id
 
+  validates :daily_report_id, presence: true, if: :enable_auto_create_report?
+
   def display_name
     email
   end

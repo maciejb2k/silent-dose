@@ -13,7 +13,6 @@ gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 gem "sassc-rails"
 gem "rails-i18n", "~> 7.0.0"
-
 gem "bootstrap", "~> 5.3.3"
 gem "autoprefixer-rails"
 gem "jquery-rails"
@@ -37,6 +36,10 @@ gem "discordrb"
 # Utilities
 gem "acts_as_list"
 gem "simple_calendar"
+
+# Background Jobs
+gem "sidekiq"
+gem "sidekiq-cron"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
