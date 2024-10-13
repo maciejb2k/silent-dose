@@ -27,7 +27,7 @@ ActiveAdmin.register DailyReport do
   filter :medications
 
   index do
-    column :report_date
+    column :report_date unless params["scope"] == "templates"
     column :title do |daily_report|
       truncate(daily_report.title, length: 50)
     end

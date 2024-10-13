@@ -30,7 +30,8 @@ class DailyReport < ApplicationRecord
   accepts_nested_attributes_for :daily_reports_medications, allow_destroy: true
 
   validates :report_date, presence: true, unless: :is_template?
-  validates :report_date, presence: true, uniqueness: { scope: :user_id, conditions: -> { where(is_template: false) } }
+  validates :report_date, presence: true, uniqueness: { scope: :user_id, conditions: -> { where(is_template: false) } }, unless: :is_template?
+  validates :title, presence: true, if: :is_template?
 
   scope :completed, -> { where(is_completed: true) }
   scope :templates, -> { where(is_template: true) }
@@ -39,6 +40,7 @@ class DailyReport < ApplicationRecord
   def display_name
     title.presence || "#{report_date}" || "Daily Report"
   end
+
   def update_completion_status
     update(is_completed: daily_reports_medications.all?(&:taken?))
   end
