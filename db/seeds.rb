@@ -1,14 +1,14 @@
-admin_user = User.create!(
-  email: "maciek@example.com",
-  password: "password",
-  password_confirmation: "password",
+User.create!(
+  email: "admin@silentdose.com",
+  password: "VZIt7qON3IvUhuiNIJ89zTxJ7k7BikFj",
+  password_confirmation: "VZIt7qON3IvUhuiNIJ89zTxJ7k7BikFj",
   role: 1
 )
 
 regular_user = User.create!(
-  email: "tomek@example.com",
-  password: "password",
-  password_confirmation: "password",
+  email: "maciek.b2k@gmail.com",
+  password: "6KLFjnetX8flf7xYRcDx9KZaEKOOwdXt",
+  password_confirmation: "6KLFjnetX8flf7xYRcDx9KZaEKOOwdXt",
   role: 0
 )
 
@@ -44,7 +44,7 @@ Medication.create!([
     description: "Dla mężczyzn",
     photo: File.open(Rails.root.join('db/seed/attachments/aliness-vitamin-complex.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "Liver Regeneration Complex",
@@ -52,7 +52,7 @@ Medication.create!([
     form: 1,
     photo: File.open(Rails.root.join('db/seed/attachments/aliness-liver-regeneration.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "Fish Omega-3 Forte",
@@ -60,7 +60,7 @@ Medication.create!([
     form: 1,
     photo: File.open(Rails.root.join('db/seed/attachments/aliness-fish-omega-3-forte.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "Cytrynian Magnezu",
@@ -69,7 +69,7 @@ Medication.create!([
     description: "125mg + B6",
     photo: File.open(Rails.root.join('db/seed/attachments/aliness-cytrynian-magnezu.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "Witamina K2 Mono Forte",
@@ -78,7 +78,7 @@ Medication.create!([
     description: "MK-7 200mg",
     photo: File.open(Rails.root.join('db/seed/attachments/aliness-witamina-k2-mk7.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "Taurynian Magnezu",
@@ -87,7 +87,7 @@ Medication.create!([
     description: "100mg + B6",
     photo: File.open(Rails.root.join('db/seed/attachments/aliness-taurynian.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "B-12",
@@ -96,7 +96,7 @@ Medication.create!([
     description: "Metylokobalamina 200mcg",
     photo: File.open(Rails.root.join('db/seed/attachments/avitale-b12.jpg')),
     unit: "mcg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "GABA",
@@ -105,7 +105,7 @@ Medication.create!([
     description: "125mg",
     photo: File.open(Rails.root.join('db/seed/attachments/swanson-gaba.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "Witamina C",
@@ -113,7 +113,7 @@ Medication.create!([
     form: 2,
     photo: File.open(Rails.root.join('db/seed/attachments/biomus-askorbinian-sodu.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "Super Formuła",
@@ -121,7 +121,7 @@ Medication.create!([
     form: 1,
     photo: File.open(Rails.root.join('db/seed/attachments/sanprobi-super-formula.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   },
   {
     name: "Glukonian Potasu",
@@ -129,7 +129,7 @@ Medication.create!([
     form: 2,
     photo: File.open(Rails.root.join('db/seed/attachments/now-glukonian-potasu.jpg')),
     unit: "mg",
-    user: admin_user
+    user: regular_user
   }
 ])
 
@@ -155,8 +155,8 @@ Provider.create!([
 ])
 
 ReminderTime.create!([
-  { time: "08:00", user: admin_user },
-  { time: "12:00", user: admin_user },
-  { time: "16:00", user: admin_user },
-  { time: "20:00", user: admin_user }
+  { time: "08:00", user: regular_user },
+  { time: "12:00", user: regular_user },
+  { time: "16:00", user: regular_user },
+  { time: "20:00", user: regular_user }
 ])
