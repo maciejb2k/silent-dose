@@ -1,3 +1,5 @@
+# Development ready docker-compose file
+
 services:
   db:
     image: postgres:16

@@ -1,3 +1,5 @@
+# Production ready docker-compose file
+
 services:
   app:
     build:
@@ -8,6 +10,25 @@ services:
       - redis
     ports:
       - "3000:3000"
+    env_file:
+      - path: .env.production
+        required: true
+    command: bash -c "bundle exec rails db:migrate && rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - activestorage-data:/rails/storage
+      - logs-data:/rails/log
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - path: .env.production
+        required: true
+    command: bundle exec sidekiq
 
   db:
     image: postgres:16
@@ -19,15 +40,6 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
-  sidekiq:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: bundle exec sidekiq
-    depends_on:
-      - db
-      - redis
-
   redis:
     image: redis:7-alpine
     ports:
@@ -36,5 +48,7 @@ services:
       - redis-data:/data
 
 volumes:
+  activestorage-data:
+  logs-data:
   postgres-data:
   redis-data:

@@ -49,7 +49,7 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
@@ -102,11 +102,11 @@ Rails.application.configure do
 
   # Mailer
   config.action_mailer.smtp_settings = {
-    port: ENV.fetch("SMTP_PORT"),
-    address: ENV.fetch("SMTP_SERVER"),
-    user_name: ENV.fetch("SMTP_LOGIN"),
-    password: ENV.fetch("SMTP_PASSWORD"),
-    domain: ENV.fetch("SMTP_DOMAIN"),
+    port: ENV["SMTP_PORT"],
+    address: ENV["SMTP_SERVER"],
+    user_name: ENV["SMTP_LOGIN"],
+    password: ENV["SMTP_PASSWORD"],
+    domain: ENV["SMTP_DOMAIN"],
     authentication: :plain,
     enable_starttls_auto: true
   }
