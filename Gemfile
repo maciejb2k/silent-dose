@@ -17,7 +17,7 @@ gem "bootstrap", "~> 5.3.3"
 gem "autoprefixer-rails"
 gem "jquery-rails"
 
-gem "pagy", "~> 9.1"
+gem "pagy", "~> 9.2"
 
 # ActiveAdmin
 gem "activeadmin"
