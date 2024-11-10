@@ -71,7 +71,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter = :resque
+  config.active_job.queue_adapter = :sidekiq
   # config.active_job.queue_name_prefix = "silent_dose_production"
 
   # Disable caching for Action Mailer templates even if Action Controller
@@ -99,4 +99,16 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Mailer
+  config.action_mailer.smtp_settings = {
+    port: ENV.fetch("SMTP_PORT"),
+    address: ENV.fetch("SMTP_SERVER"),
+    user_name: ENV.fetch("SMTP_LOGIN"),
+    password: ENV.fetch("SMTP_PASSWORD"),
+    domain: ENV.fetch("SMTP_DOMAIN"),
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+  config.action_mailer.delivery_method = :smtp
 end

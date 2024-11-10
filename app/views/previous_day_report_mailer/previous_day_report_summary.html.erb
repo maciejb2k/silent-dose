@@ -1,0 +1,12 @@
+<h1>Daily Report Summary for <%= @report.report_date.strftime('%B %d, %Y') %></h1>
+
+<p><strong>Title:</strong> <%= @report_summary[:title] %></p>
+<p><strong>Description:</strong> <%= @report_summary[:description] %></p>
+<p><strong>Completed:</strong> <%= @report_summary[:completed] ? 'Yes' : 'No' %></p>
+
+<h2>Medications:</h2>
+<ul>
+  <% @report_summary[:medications].each do |med| %>
+    <li><%= med[:name] %>: <%= med[:taken] ? 'Taken' : 'Not Taken' %></li>
+  <% end %>
+</ul>

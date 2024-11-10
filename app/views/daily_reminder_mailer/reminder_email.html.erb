@@ -1,0 +1,14 @@
+<% if @not_taken_medications.size > 0 %>
+  <h1>Reminder</h1>
+  <p>Hi <%= @user.email %>,</p>
+  <p>It looks like you haven't taken the following medications today:</p>
+  <ul>
+    <% @not_taken_medications.each do |medication| %>
+      <li><%= medication.medication_name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h1>Reminder</h1>
+  <p>Hi <%= @user.email %>,</p>
+  <p>Great job! You've taken all your medications today.</p>
+<% end %>

@@ -153,3 +153,10 @@ Provider.create!([
     config: {}
   }
 ])
+
+ReminderTime.create!([
+  { time: "08:00", user: admin_user },
+  { time: "12:00", user: admin_user },
+  { time: "16:00", user: admin_user },
+  { time: "20:00", user: admin_user }
+])

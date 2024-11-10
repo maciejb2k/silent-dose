@@ -1,0 +1,14 @@
+schedule_daily_reports:
+  cron: "0 0 * * *" # Run at midnight every day
+  class: "ScheduleDailyReportsGenerationJob"
+  queue: default
+
+previous_day_reports:
+  cron: "* * * * *" # Run every minute
+  class: "SchedulePreviousDayReportGenerationJob"
+  queue: default
+
+medications_reminder:
+  cron: "* * * * *" # Run every minute
+  class: "ScheduleMedicationsReminderJob"
+  queue: default

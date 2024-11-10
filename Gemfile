@@ -39,7 +39,7 @@ gem "simple_calendar"
 
 # Background Jobs
 gem "sidekiq"
-gem "sidekiq-cron"
+gem "sidekiq-cron", "2.0.0.rc2"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
