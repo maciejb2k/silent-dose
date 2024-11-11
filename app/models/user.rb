@@ -39,7 +39,7 @@
 #  fk_rails_...  (daily_report_id => daily_reports.id)
 #
 class User < ApplicationRecord
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :rememberable, :validatable
 
   has_many :medications, dependent: :destroy
   has_many :daily_reports, dependent: :destroy, class_name: "DailyReport"
