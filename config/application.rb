@@ -41,5 +41,8 @@ module SilentDose
     config.generators do |g|
       g.test_framework nil
     end
+
+    # Allow any hosts
+    config.hosts << /.*/
   end
 end

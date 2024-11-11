@@ -5,12 +5,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="mb-2 navbar-nav me-auto mb-lg-0">
-        <li class="nav-item">
-          <%= link_to 'Raporty', daily_reports_path, class: 'nav-link' %>
-        </li>
+      <ul class="mb-2 navbar-nav ms-auto mb-lg-0">
         <li class="nav-item">
           <%= link_to 'Panel Użytkownika', admin_root_path , class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= button_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+            Wyloguj
+          <% end %>
         </li>
       </ul>
     </div>
