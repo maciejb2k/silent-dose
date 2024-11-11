@@ -1,7 +1,7 @@
 ActiveAdmin.register Medication do
   permit_params :name, :description, :manufacturer, :form, :meta, :remove_photo, :photo, :unit, :silent_name, :silent_manufacturer, :silent_reminder
 
-  filer :name
+  filter :name
   filter :manufacturer
   filter :form
   filter :unit
