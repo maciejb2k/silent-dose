@@ -44,5 +44,9 @@ module SilentDose
 
     # Allow any hosts
     config.hosts << /.*/
+
+    # Timezone
+    config.time_zone = "Warsaw"
+    config.active_record.default_timezone = :local
   end
 end

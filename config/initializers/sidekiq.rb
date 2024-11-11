@@ -9,5 +9,6 @@ Sidekiq.configure_client do |config|
 end
 
 Sidekiq::Cron.configure do |config|
+  config.cron_poll_interval = 10
   config.cron_schedule_file = "config/my_schedule.yml"
 end
