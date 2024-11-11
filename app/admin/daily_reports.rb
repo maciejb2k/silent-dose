@@ -25,6 +25,9 @@ ActiveAdmin.register DailyReport do
   filter :report_date
   filter :user
   filter :medications
+  filter :created_at
+  filter :updated_at
+
 
   index do
     column :report_date unless params["scope"] == "templates"

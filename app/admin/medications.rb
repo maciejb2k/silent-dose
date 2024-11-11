@@ -1,6 +1,13 @@
 ActiveAdmin.register Medication do
   permit_params :name, :description, :manufacturer, :form, :meta, :remove_photo, :photo, :unit, :silent_name, :silent_manufacturer, :silent_reminder
 
+  filer :name
+  filter :manufacturer
+  filter :form
+  filter :unit
+  filter :created_at
+  filter :updated_at
+
   index do
     selectable_column
     column :photo do |medication|

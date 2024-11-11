@@ -5,6 +5,9 @@ ActiveAdmin.register ReminderTime do
 
   config.sort_order = "time_asc"
 
+  filter :created_at
+  filter :updated_at
+
   index do
     column :time do |reminder_time|
       reminder_time.time.strftime("%H:%M")

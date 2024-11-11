@@ -8,6 +8,9 @@ ActiveAdmin.register DailyReports::Medication do
 
   sortable
 
+  filter :created_at
+  filter :updated_at
+
   index do
     sortable_handle_column
     column "Medication" do |daily_report_medication|

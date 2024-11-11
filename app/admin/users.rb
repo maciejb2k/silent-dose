@@ -18,6 +18,9 @@ ActiveAdmin.register User do
     :sms_notifications_phone_number
   )
 
+  filter :created_at
+  filter :updated_at
+
   controller do
     def update
       @user = current_user

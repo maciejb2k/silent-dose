@@ -3,6 +3,9 @@ ActiveAdmin.register Provider do
 
   json_editor
 
+  filter :created_at
+  filter :updated_at
+
   index do
     tag_column :provider_type
     column :name
