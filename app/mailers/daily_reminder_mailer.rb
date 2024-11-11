@@ -1,6 +1,4 @@
 class DailyReminderMailer < ApplicationMailer
-  default from: "no-reply@silentdose.com"
-
   def reminder_email(user:, daily_report:)
     @user = user
     @daily_report = daily_report
@@ -8,7 +6,7 @@ class DailyReminderMailer < ApplicationMailer
 
     mail(
       to: @user.email,
-      subject: "Daily Reminder"
+      subject: "[SilentDose] ✅ Przypomnienie o suplementach z dnia #{Date.today.strftime('%d-%m-%Y')}"
     )
   end
 

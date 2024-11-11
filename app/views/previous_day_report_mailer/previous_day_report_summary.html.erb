@@ -1,12 +1,9 @@
-<h1>Daily Report Summary for <%= @report.report_date.strftime('%B %d, %Y') %></h1>
+<p> Cześć 😃, <i><%= @user.email %>!</i></p>
+<p>Oto podsumowanie dziennego raportu z dnia: <b><%= @report.report_date.strftime('%d-%m-%Y') %></b></p>
 
-<p><strong>Title:</strong> <%= @report_summary[:title] %></p>
-<p><strong>Description:</strong> <%= @report_summary[:description] %></p>
-<p><strong>Completed:</strong> <%= @report_summary[:completed] ? 'Yes' : 'No' %></p>
-
-<h2>Medications:</h2>
+<p>Suplementy:</p>
 <ul>
   <% @report_summary[:medications].each do |med| %>
-    <li><%= med[:name] %>: <%= med[:taken] ? 'Taken' : 'Not Taken' %></li>
+    <li><%= med.taken? ? '✅' : '❌' %> <%= med.medication_name %> - <%= med.medication_manufacturer %></li>
   <% end %>
 </ul>
