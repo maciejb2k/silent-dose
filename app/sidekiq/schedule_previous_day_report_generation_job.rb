@@ -2,7 +2,7 @@ class SchedulePreviousDayReportGenerationJob
   include Sidekiq::Job
 
   def perform
-    User.where(previous_day_report_email: true).find_each do |user|
+    User.where(enable_previous_day_reports: true).find_each do |user|
       return if user.previous_day_report_notification_time.blank?
 
       now = Time.current

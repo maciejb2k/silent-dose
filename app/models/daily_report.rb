@@ -2,15 +2,16 @@
 #
 # Table name: daily_reports
 #
-#  id           :uuid             not null, primary key
-#  description  :text
-#  is_completed :boolean          default(FALSE), not null
-#  is_template  :boolean          default(FALSE), not null
-#  report_date  :date
-#  title        :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :uuid             not null
+#  id                          :uuid             not null, primary key
+#  description                 :text
+#  is_completed                :boolean          default(FALSE), not null
+#  is_previous_day_report_sent :boolean          default(FALSE), not null
+#  is_template                 :boolean          default(FALSE), not null
+#  report_date                 :date
+#  title                       :string
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  user_id                     :uuid             not null
 #
 # Indexes
 #
