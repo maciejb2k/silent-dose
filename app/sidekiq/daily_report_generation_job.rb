@@ -1,9 +1,13 @@
 class DailyReportGenerationJob
   include Sidekiq::Job
 
-  def perform(user_id, daily_report_template_id)
-    return if DailyReport.where(user_id: User.find(user_id), report_date: Date.today).exists?
+  def perform
+    User.where(enable_auto_create_report: true).find_each do |user|
+      report_template = user.daily_reports.templates.find(user.daily_report_id)
 
-    DailyReports::CreateFromTemplateService.call(daily_report_template_id)
+      return if report_template.blank? || user.daily_reports.reports.where(report_date: Time.current.to_date).exists?
+
+      DailyReports::CreateFromTemplateService.call(report_template.id)
+    end
   end
 end

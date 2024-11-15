@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_13_162036) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_15_125235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -95,6 +95,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_162036) do
     t.index ["user_id"], name: "index_medications_on_user_id"
   end
 
+  create_table "notification_histories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "provider_type", default: 0, null: false
+    t.datetime "sent_at", null: false
+    t.text "message"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notification_histories_on_user_id"
+  end
+
   create_table "providers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -150,6 +160,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_162036) do
   add_foreign_key "daily_reports_medications", "medications"
   add_foreign_key "daily_reports_medications", "users"
   add_foreign_key "medications", "users"
+  add_foreign_key "notification_histories", "users"
   add_foreign_key "reminder_times", "users"
   add_foreign_key "users", "daily_reports"
 end

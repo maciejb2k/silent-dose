@@ -1,6 +1,6 @@
 schedule_daily_reports:
   cron: "0 0 * * *" # Run at midnight every day
-  class: "ScheduleDailyReportsGenerationJob"
+  class: "DailyReportGenerationJob"
   queue: default
 
 previous_day_reports:

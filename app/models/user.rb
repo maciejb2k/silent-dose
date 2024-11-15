@@ -45,6 +45,7 @@ class User < ApplicationRecord
   has_many :daily_reports, dependent: :destroy, class_name: "DailyReport"
   has_many :daily_reports_medications, dependent: :destroy, class_name: "DailyReports::Medication"
   has_many :reminder_times, dependent: :destroy
+  has_many :notification_histories, dependent: :destroy
 
   enum :role, { user: 0, admin: 1 }
 

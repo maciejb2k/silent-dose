@@ -8,7 +8,7 @@ class ScheduleMedicationsReminderJob
       minute = reminder_time.time.min
 
       if now.hour == hour && now.min == minute
-        MedicationsReminderJob.perform_async(reminder_time.user_id)
+        MedicationsReminderJob.perform_async(reminder_time.user_id, reminder_time.id)
       end
     end
   end
