@@ -253,7 +253,7 @@ docker compose exec -it db psql -U postgres -c "CREATE DATABASE \"silent-dose_pr
 docker compose -f docker-compose.prod.yml exec -T db bash -c "pg_restore -U postgres -v -d silent-dose_production" < pgdump.dump
 ```
 
-### Automated Backup and Restore
+### Backup and Restore
 
 You can also use the `./db_backup.sh` and `./db_restore.sh` scripts to backup and restore the database.
 
@@ -282,4 +282,48 @@ Restore with `db_restore.sh` without arguments and with prompt:
 Restore with `db_restore.sh` using arguments:
 ```bash
 ./db_restore.sh my_database /path/to/backup-file.dump
+```
+
+### Automatic Database Backup with Cron
+
+Install `cron`:
+```bash
+sudo apt update cron
+sudo apt install cron
+```
+
+Check if `cron` is running:
+```bash
+sudo systemctl restart cron
+sudo systemctl status cron
+```
+
+Create a backup directory:
+```bash
+mkdir /home/app/silent-dose_backups
+```
+
+Make `db_backup.sh` executable:
+```bash
+chmod +x db_backup.sh
+```
+
+Edit the crontab:
+```bash
+crontab -e
+```
+
+Add this line at the end of the file to backup the database every day at midnight (change the paths to match your setup):
+```
+0 0 * * * /home/app/silent-dose/db_backup.sh /home/app/silent-dose_backups
+```
+
+Verify content of the crontab:
+```bash
+crontab -l
+```
+
+The crontab will now automatically backup the database every day at midnight. Verify the backups:
+```bash
+ll /home/app/silent-dose_backups
 ```
