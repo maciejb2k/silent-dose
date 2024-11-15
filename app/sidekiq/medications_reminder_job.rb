@@ -6,6 +6,7 @@ class MedicationsReminderJob
     daily_report = user.daily_reports.reports.find_by(report_date: Date.today)
 
     # Skip if user has no daily report or all medications are taken
+    return if daily_report.blank?
     return if daily_report.daily_reports_medications.blank?
     return if daily_report.daily_reports_medications.where(taken: false).empty?
 
