@@ -13,14 +13,14 @@ ActiveAdmin.register NotificationHistory do
   index do
     selectable_column
     id_column
-    column :provider_type
+    tag_column :provider_type
     column :sent_at
     actions
   end
 
   show do
     attributes_table do
-      row :provider_type
+      tag_row :provider_type
       row :sent_at
       row :message
       row :created_at
