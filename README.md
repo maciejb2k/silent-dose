@@ -232,6 +232,12 @@ git pull
 docker compose -f docker-compose.prod.yml up -d --remove-orphans --build
 ```
 
+Configure appropriate timezone in the system and in the `.env.production` file, to make sure that `cron` on OS and `sidekiq-cron` in the application are in sync:
+```bash
+timedatectl
+timedatectl set-timezone Europe/Warsaw
+```
+
 ## Backup and Restore the Database
 
 ### Manual Backup and Restore
