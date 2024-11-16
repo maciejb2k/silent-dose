@@ -1,38 +1,37 @@
-
-  <div class="pt-2 pb-4 row align-items-md-stretch">
-    <div class="col-md-12">
-      <div class="h-64 py-5 text-bg-dark rounded-3 d-flex flex-column justify-content-between align-items-center">
-        <% if @current_daily_report.present? %>
-          <div>
-            <h4 class="text-center">Dzisiejszy Raport</h4>
-            <p class="text-center"><%= @current_daily_report.report_date %></p>
-          </div>
-          <div>
-            <%= link_to 'Wyświetl raport', @current_daily_report, class: 'btn btn-outline-light' %>
-          </div>
-        <% else %>
-          <p class="m-0 text-center">Brak dzisiejszego raportu</p>
-        <% end %>
-      </div>
+<div class="pt-2 pb-4 row align-items-md-stretch">
+  <div class="col-md-12">
+    <div class="h-64 py-5 text-bg-dark rounded-3 d-flex flex-column justify-content-between align-items-center">
+      <% if @current_daily_report.present? %>
+        <div>
+          <h4 class="text-center">Dzisiejszy Raport</h4>
+          <p class="text-center"><%= @current_daily_report.report_date %></p>
+        </div>
+        <div>
+          <%= link_to 'Wyświetl raport', @current_daily_report, class: 'btn btn-outline-light' %>
+        </div>
+      <% else %>
+        <p class="m-0 text-center">Brak dzisiejszego raportu</p>
+      <% end %>
     </div>
   </div>
+</div>
 
 <div>
-  <table class="table">
+  <table class="table align-middle text-center table-equal-width">
     <thead>
       <tr>
         <th scope="col">Data</th>
-        <th scope="col">Wykonany</th>
+        <th scope="col">Wykonano</th>
         <th scope="col">Akcje</th>
       </tr>
     </thead>
     <tbody>
       <% @records.each do |daily_report| %>
         <tr>
-          <td><%= daily_report.report_date.strftime('%d-%m-%Y') %></td>
-          <td><%= daily_report.is_completed ? '✅' : '❌' %></td>
+          <td><%= daily_report.report_date.strftime('%d.%m.%Yr.') %></td>
+          <td><%= daily_report.is_completed ? '✅ Tak' : '❌ Nie' %></td>
           <td>
-            <%= link_to 'Wyświetl', daily_report %>
+            <%= link_to 'Wyświetl', daily_report, class: 'btn btn-outline-primary' %>
           </td>
         </tr>
       <% end %>
@@ -42,5 +41,3 @@
     <%== pagy_bootstrap_nav(@pagy) %>
   </div>
 </div>
-
-

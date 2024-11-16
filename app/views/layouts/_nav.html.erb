@@ -1,6 +1,9 @@
 <nav class="mb-3 navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <%= link_to 'SilentDose', daily_reports_path, class: 'navbar-brand fw-medium' %>
+    <%= link_to daily_reports_path, class: 'navbar-brand d-flex align-items-center' do %>
+      <%# <img src="/favicon-32x32.png" alt="Logo" width="20" height="20" class="d-block me-2"> %>
+      Silent Dose
+    <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
