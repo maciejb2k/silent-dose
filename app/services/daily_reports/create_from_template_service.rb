@@ -17,9 +17,8 @@ class DailyReports::CreateFromTemplateService < ApplicationService
     daily_report.daily_reports_medications.find_each do |daily_reports_medication|
       new_daily_reports_medication = daily_reports_medication.dup
       new_daily_reports_medication.daily_report_id = new_daily_report.id
+      new_daily_reports_medication.position = daily_reports_medication.position
       new_daily_reports_medication.save
-
-      new_daily_reports_medication.update_attribute :position, daily_reports_medication.position
     end
 
     new_daily_report
