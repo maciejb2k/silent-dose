@@ -21,7 +21,6 @@
 #
 # Indexes
 #
-#  idx_on_daily_report_id_position_dbfe078fa8          (daily_report_id,position) UNIQUE
 #  index_daily_reports_medications_on_daily_report_id  (daily_report_id)
 #  index_daily_reports_medications_on_medication_id    (medication_id)
 #  index_daily_reports_medications_on_user_id          (user_id)

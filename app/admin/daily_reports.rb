@@ -16,7 +16,12 @@ ActiveAdmin.register DailyReport do
 
   member_action :create_report_from_template, method: :post do
     new_daily_report = DailyReports::CreateFromTemplateService.call(params[:id])
-    redirect_to admin_daily_report_path(new_daily_report)
+
+    if new_daily_report.persisted?
+      redirect_to admin_daily_report_path(new_daily_report), notice: "Report created successfully."
+    else
+      redirect_to admin_daily_reports_path(scope: "templates"), alert: "Failed to create report from template."
+    end
   end
 
   scope :reports, default: true

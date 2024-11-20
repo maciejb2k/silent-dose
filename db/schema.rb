@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_15_125235) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_20_120742) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -73,7 +73,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_125235) do
     t.string "silent_name"
     t.string "silent_manufacturer"
     t.text "silent_reminder"
-    t.index ["daily_report_id", "position"], name: "idx_on_daily_report_id_position_dbfe078fa8", unique: true
     t.index ["daily_report_id"], name: "index_daily_reports_medications_on_daily_report_id"
     t.index ["medication_id"], name: "index_daily_reports_medications_on_medication_id"
     t.index ["user_id"], name: "index_daily_reports_medications_on_user_id"
